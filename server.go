@@ -21,7 +21,7 @@ func main() {
 
 	secure.GET("/:address/volume/up", handlers.VolumeUp)
 	secure.GET("/:address/volume/down", handlers.VolumeDown)
-	secure.GET("/:address/volume/mute", handlers.Mute)
+	secure.GET("/:address/volume/toggle-mute", handlers.Mute)
 
 	server := http.Server{
 		Addr:           port,
