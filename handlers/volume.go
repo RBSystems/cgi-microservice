@@ -21,12 +21,20 @@ func VolumeUp(context echo.Context) error {
 	}
 
 	log.Printf("Done.")
-	return context.JSON(http.StatusOK, err)
+	return context.JSON(http.StatusOK, "success")
 
 }
 
 func VolumeDown(context echo.Context) error {
 	log.Printf("Lowering volume on %s...", context.Param("address"))
 
-	return nil
+	err := helpers.BuildAndSendPayload(context.Param("address"), "send", "control", "4054", "13")
+	if err != nil {
+		log.Printf("ERROR: %v", err.Error())
+		jsonresp.New(context.Response(), http.StatusBadRequest, err.Error())
+		return nil
+	}
+
+	log.Printf("Done.")
+	return context.JSON(http.StatusOK, "success")
 }
