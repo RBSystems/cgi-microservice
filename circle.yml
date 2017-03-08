@@ -2,11 +2,14 @@ machine:
     services:
         - docker
 
-test:
+dependencies:
     post:
-        - ./coverage.sh
-        - bash <(curl -s https://codecov.io/bash)
+        - rm -r ~/.gradle || true
 
+test:
+    override:
+        - go test -v -race $(go list ./... | grep -v /vendor/)
+          
 deployment:
     production:
         branch: master
