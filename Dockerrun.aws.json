@@ -5,7 +5,7 @@
         "Key": ".dockercfg"
     },
     "Image": {
-        "Name": "byuoitav/cgi-microservice:<TAG>",
+        "Name": "byuoitav/cgi-microservice:<latest>",
         "Update": "true"
     },
     "Ports": [{
